@@ -1,69 +1,462 @@
+import {
+  ClipboardList,
+  Hotel,
+  Languages,
+  MapPinned,
+  Plane,
+  Puzzle,
+} from "lucide-react";
 import Image from "next/image";
+import CircularCarousel from "@/components/CircularCarousel";
+import CircularGallery from "@/components/CircularGallery";
+import PixelCard from "@/components/PixelCard";
+import "./home.css";
+
+const storyImages = [
+  {
+    src: "/story/story-1.webp",
+    alt: "A palm-lined road through Kerala backwaters",
+    title: "Along the backwaters",
+    subtitle: "Kerala",
+  },
+  {
+    src: "/story/story-2.webp",
+    alt: "A traditional houseboat on a shaded Kerala canal",
+    title: "A slower pace",
+    subtitle: "Backwater journeys",
+  },
+  {
+    src: "/story/story-3.webp",
+    alt: "Chinese fishing nets along the Kerala coast",
+    title: "By the water",
+    subtitle: "Kerala coast",
+  },
+  {
+    src: "/story/story-4.webp",
+    alt: "A winding road through green tea plantations",
+    title: "Into the hills",
+    subtitle: "Munnar",
+  },
+  {
+    src: "/story/story-5.webp",
+    alt: "A traditional Kerala temple framed by trees",
+    title: "A sense of place",
+    subtitle: "Kerala heritage",
+  },
+  {
+    src: "/story/story-6.webp",
+    alt: "Palm trees and waterways in the Kerala countryside",
+    title: "Tropical quiet",
+    subtitle: "Kerala",
+  },
+  {
+    src: "/story/story-7.webp",
+    alt: "A lone tree beside a misty Kerala lake",
+    title: "Still waters",
+    subtitle: "Kerala",
+  },
+  {
+    src: "/story/story-8.webp",
+    alt: "A waterfall cascading over rocks in the hills",
+    title: "Water in motion",
+    subtitle: "Kerala",
+  },
+  {
+    src: "/story/story-9.webp",
+    alt: "A temple reflected in the water",
+    title: "Heritage by the water",
+    subtitle: "Kerala",
+  },
+  {
+    src: "/story/story-10.webp",
+    alt: "Tea pickers among green tea fields in the hills",
+    title: "The tea gardens",
+    subtitle: "Munnar",
+  },
+  {
+    src: "/story/story-11.webp",
+    alt: "A quiet lake framed by tree trunks",
+    title: "Reflections",
+    subtitle: "Kerala",
+  },
+];
+
+const steps = [
+  {
+    icon: MapPinned,
+    title: "Tell Us Your Needs",
+    description:
+      "Share your medical travel requirements or the Kerala experience you want to discover.",
+  },
+  {
+    icon: Puzzle,
+    title: "Get Personal Guidance",
+    description:
+      "We help coordinate suitable hospital appointments, accommodation, transport, and travel arrangements.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Plan Your Journey",
+    description:
+      "Organize the details with personalized assistance, local guidance, and translation support when needed.",
+  },
+  {
+    icon: Plane,
+    title: "Arrive with Confidence",
+    description:
+      "Receive coordinated support throughout your visit to Kerala, from arrival to departure.",
+  },
+];
+
+const services = [
+  {
+    icon: Hotel,
+    title: "Hotel booking & accommodation coordination",
+    description:
+      "We help coordinate comfortable stays near treatment locations, with options that suit your style and travel logistics.",
+  },
+  {
+    icon: Languages,
+    title: "Interpreter / translation assistance",
+    description:
+      "We arrange language support to help make conversations between patients, doctors, and care teams clearer.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Hospital referrals & appointment coordination",
+    description:
+      "We help coordinate referrals and appointment requests through established partners, streamlining the planning process.",
+  },
+];
+
+const hospitalImages = [
+  {
+    text: "Aster Medcity",
+    alt: "Aster Medcity hospital in Kerala",
+    description: "Aster Medcity",
+    image: "/hospital/hospital-1.webp",
+  },
+  {
+    text: "Amrita",
+    alt: "Amrita hospital in Kerala",
+    description: "Amrita",
+    image: "/hospital/hospital-2.avif",
+  },
+  {
+    text: "Renai Medicity",
+    alt: "Renai Medicity hospital in Kerala",
+    description: "Renai Medicity",
+    image: "/hospital/hospital-3.png",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="travel-home">
+      <section className="hero" id="home">
+        <video
+          className="hero-video"
+          src="/kerala.mp4"
+          poster="/kerala-ticket.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+        <div className="hero-shade" aria-hidden="true" />
+
+        <header className="site-header">
+          <a className="site-brand" href="#home" aria-label="KK Travels home">
+            <Image
+              className="brand-logo"
+              src="/logo/KK Travels — Logo.svg"
+              alt=""
+              width={40}
+              height={31}
+              aria-hidden="true"
+            />
+            <span>KK Travels</span>
+          </a>
+
+          <nav className="desktop-nav" aria-label="Main navigation">
+            <a href="#about">About</a>
+            <a href="#medical">Medical travel</a>
+            <a href="#tours">Kerala tourism</a>
+          </nav>
+
+          <div className="header-actions">
+            <details className="menu-details">
+              <summary aria-label="Open navigation menu">
+                <span />
+                <span />
+              </summary>
+              <nav className="menu-panel" aria-label="More navigation">
+                <a href="#about">Our story</a>
+                <a href="#tours">Kerala journeys</a>
+                <a href="#medical">Medical services</a>
+                <a href="#footer">Contact</a>
+              </nav>
+            </details>
+          </div>
+        </header>
+
+        <div className="hero-copy">
+          <p className="hero-kicker">Care, comfort & Kerala</p>
+          <h1>
+            Medical travel
+            <br />
+            coordination &amp; Kerala
+            <br />
+            leisure journeys
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-description">
+            KK Travels helps GCC customers coordinate medical appointments in
+            India and plan customized Kerala tours. From trusted partners to
+            thoughtful details, we make your journey feel easier from the
+            moment you arrive.
+          </p>
+          <a className="text-link hero-link" href="#medical">
+            Explore how we can help <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <a className="hero-scroll" href="#about">
+          <span className="scroll-line" />
+          Scroll to explore
+        </a>
+      </section>
+
+      <section className="story-section dark-section" id="about">
+        <div className="section-heading story-heading">
+          <p className="eyebrow">A little about us</p>
+          <h2>Our Story</h2>
+          <p>
+            KK Travels helps customers across the GCC coordinate medical
+            appointments and customized Kerala journeys. Through established
+            partners, we help arrange appointments, accommodation, transport
+            and language assistance around your needs.
+          </p>
+          <a className="text-link" href="#how-it-works">
+            Learn more about our process <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div
+          className="story-carousel"
+          role="region"
+          aria-label="A glimpse of our journeys"
+        >
+          <CircularCarousel
+            items={storyImages}
+            preset="cylinder"
+            intro="rise"
+            cardWidth={320}
+            aspectRatio={1}
+            speed={14}
+            captions={false}
+            gap={25}
+            tilt={-5}
+            curve={1}
+            perspective={2500}
+            autoplay="drift"
+            interval={3}
+            direction="left"
+            momentum={0.6}
+            snap
+            pauseOnHover
+            focusOnClick
+            draggable
+            parallax={0.3}
+            stretch={0.5}
+            fadeColor="#000000"
+            depthFade={0.55}
+            innerShade={0.6}
+            cornerRadius={12}
+          />
+        </div>
+
+        <div className="story-stats">
+          <article>
+            <strong>7+ Years</strong>
+            <h3>Travel Assistance Experience</h3>
+            <p>
+              Personalized guidance and support for international travellers
+              visiting India.
+            </p>
+          </article>
+          <article>
+            <strong>5+ Languages</strong>
+            <h3>Multilingual Assistance</h3>
+            <p>
+              Communication support to help international visitors navigate
+              their journey.
+            </p>
+          </article>
+          <article>
+            <strong>5+ Hospitals</strong>
+            <h3>Hospital Network</h3>
+            <p>
+              Connections with established hospitals to help coordinate
+              medical appointments and treatment visits.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="process-section" id="how-it-works">
+        <div className="process-heading">
+          <div>
+            <p className="eyebrow">Your journey, coordinated</p>
+            <h2>How KK Travels Works</h2>
+          </div>
+          <p>
+            From your first enquiry to your journey home, we help coordinate
+            every step with care.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="process-grid">
+          {steps.map(({ icon: Icon, title, description }, index) => (
+            <article className="process-step" key={title}>
+              <div className="process-icon">
+                <Icon size={23} strokeWidth={1.35} aria-hidden="true" />
+                <span>0{index + 1}</span>
+              </div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+
+        <div
+          className="process-landscape"
+          role="img"
+          aria-label="Misty mountains and tea plantations in Kerala"
+        />
+      </section>
+
+      <section className="medical-section" id="medical">
+        <div className="section-heading medical-heading">
+          <p className="eyebrow">Medical tourism coordination</p>
+          <h2>Medical tourism services</h2>
+          <p>
+            We coordinate practical support around your medical travel journey,
+            from accommodation and transport to language assistance and
+            appointment coordination through established partners.
+          </p>
+        </div>
+        <div className="medical-grid">
+          {services.map(({ icon: Icon, title, description }) => (
+            <PixelCard
+              key={title}
+              className="medical-pixel-card"
+              colors={["#f8fafc", "#f1f5f9", "#cbd5e1"]}
+              glowColor="#cbd5e1"
+              shape="square"
+              origin="center"
+              gap={5}
+              pixelSize={2}
+              speed={35}
+              revealDuration={600}
+              spotlight={0.5}
+              glow={0.5}
+              opacity={0.35}
+              fade={0.7}
+              trigger="hover"
+              radius={24}
+              clickPulse
+              intro
+              theme="dark"
+            >
+              <article className="medical-card">
+                <span className="medical-icon">
+                  <Icon size={17} strokeWidth={1.6} aria-hidden="true" />
+                </span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+            </PixelCard>
+          ))}
+        </div>
+      </section>
+
+      <section className="hospital-section" aria-labelledby="hospital-title">
+        <div className="section-heading hospital-heading">
+          <p className="eyebrow">Hospital experience</p>
+          <h2 id="hospital-title">Hospitals in Kerala</h2>
+          <p>
+            Explore healthcare facilities in Kerala. KK Travels can help
+            coordinate appointments with providers suited to your journey.
+          </p>
+        </div>
+        <div className="hospital-gallery">
+          <CircularGallery
+            items={hospitalImages}
+            bend={2}
+            textColor="#ffffff"
+            borderRadius={0.05}
+            scrollEase={0.05}
+            itemSize={0.82}
+            itemAspect={0.78}
+            gap={0.26}
+            wave={1}
+            fadeEdges={0.12}
+            shadow={0.25}
+            scrollSpeed={2}
+            autoScroll={0}
+            snap
+            grayscale={false}
+            showTitles
+            openOnClick
+            intro
+            font="bold 30px Arial"
+          />
+        </div>
+      </section>
+
+      <footer className="site-footer" id="footer">
+        <div className="footer-main">
+          <div className="footer-about">
+            <a className="footer-brand" href="#home">
+              <Image
+                className="brand-logo"
+                src="/logo/KK Travels — Logo.svg"
+                alt=""
+                width={24}
+                height={19}
+                aria-hidden="true"
+              />
+              <span>KK Travels</span>
+            </a>
+            <p>
+              Your trusted partner for medical travel and tourism coordination
+              between the GCC and India.
+            </p>
+          </div>
+          <div className="footer-column">
+            <h2>Company</h2>
+            <a href="#about">About us</a>
+            <a href="#how-it-works">Our process</a>
+            <a href="mailto:vita-travels@gmail.com">Email: to be provided</a>
+            <a href="tel:+1012345678">Phone: to be provided</a>
+          </div>
+          <div className="footer-column">
+            <h2>Services</h2>
+            <a href="#medical">Medical travel</a>
+            <a href="#tours">Kerala tourism</a>
+            <a href="#tours">Custom journeys</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© KK Travels. All rights reserved.</p>
+          <div>
+            <a href="#footer">Privacy policy</a>
+            <a href="#footer">Terms of service</a>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }

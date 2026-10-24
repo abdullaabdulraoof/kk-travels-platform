@@ -1,0 +1,142 @@
+
+/* ========================================
+   KK NAVBAR — DESKTOP LAYOUT FIX
+======================================== */
+
+.kk-navbar {
+  padding: 22px 4.2%;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 24, 19, 0.68) 0%,
+    rgba(8, 24, 19, 0.22) 75%,
+    transparent 100%
+  );
+}
+
+.kk-navbar-container {
+  display: flex;
+  width: 100%;
+  max-width: 1800px;
+  margin-inline: auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.kk-brand {
+  flex: 0 0 auto;
+}
+
+.kk-navbar .navbar-toggler {
+  display: none;
+}
+
+.kk-navbar .navbar-collapse {
+  display: flex !important;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.kk-nav-links {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: clamp(18px, 2vw, 34px);
+  margin-inline: 32px !important;
+}
+
+.kk-nav-links .kk-nav-link {
+  font-size: 10px;
+  letter-spacing: 0.9px;
+}
+
+.kk-nav-actions {
+  flex: 0 0 auto;
+  gap: 22px;
+}
+
+.kk-contact-button {
+  min-width: 190px;
+}
+
+/* Make the navbar easier to read over the sky */
+.kk-navbar-scrolled {
+  background: rgba(9, 28, 22, 0.96);
+}
+
+/* ========================================
+   TABLET AND MOBILE
+======================================== */
+
+@media (max-width: 991px) {
+  .kk-navbar,
+  .kk-navbar.kk-navbar-scrolled {
+    padding: 14px 5%;
+    background: rgba(9, 28, 22, 0.96);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .kk-navbar .navbar-toggler {
+    display: block;
+    margin-inline-start: auto;
+  }
+
+  .kk-navbar .navbar-collapse {
+    display: none !important;
+    flex-basis: 100%;
+  }
+
+  .kk-navbar .navbar-collapse.show {
+    display: block !important;
+  }
+
+  .kk-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0 !important;
+  }
+
+  .kk-nav-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+  }
+
+  .kk-contact-button {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1250px) {
+  .kk-navbar {
+    padding-inline: 2.5%;
+  }
+
+  .kk-navbar-container {
+    gap: 18px;
+  }
+
+  .kk-nav-links {
+    gap: 14px;
+    margin-inline: 12px !important;
+  }
+
+  .kk-nav-links .kk-nav-link {
+    font-size: 9px;
+  }
+
+  .kk-nav-actions {
+    gap: 13px;
+  }
+
+  .kk-contact-button {
+    min-width: 155px;
+    gap: 10px;
+    padding-inline: 10px;
+  }
+}
