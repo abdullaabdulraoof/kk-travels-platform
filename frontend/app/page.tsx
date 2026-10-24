@@ -6,10 +6,12 @@ import {
   Plane,
   Puzzle,
 } from "lucide-react";
-import Image from "next/image";
+import Link from "next/link";
 import CircularCarousel from "@/components/CircularCarousel";
 import CircularGallery from "@/components/CircularGallery";
+import KKNavbar from "@/components/Navbar/Navbar";
 import PixelCard from "@/components/PixelCard";
+import SiteFooter from "@/components/SiteFooter";
 import "./home.css";
 
 const storyImages = [
@@ -167,40 +169,7 @@ export default function Home() {
         />
         <div className="hero-shade" aria-hidden="true" />
 
-        <header className="site-header">
-          <a className="site-brand" href="#home" aria-label="KK Travels home">
-            <Image
-              className="brand-logo"
-              src="/logo/KK Travels — Logo.svg"
-              alt=""
-              width={40}
-              height={31}
-              aria-hidden="true"
-            />
-            <span>KK Travels</span>
-          </a>
-
-          <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#medical">Medical travel</a>
-            <a href="#tours">Kerala tourism</a>
-          </nav>
-
-          <div className="header-actions">
-            <details className="menu-details">
-              <summary aria-label="Open navigation menu">
-                <span />
-                <span />
-              </summary>
-              <nav className="menu-panel" aria-label="More navigation">
-                <a href="#about">Our story</a>
-                <a href="#tours">Kerala journeys</a>
-                <a href="#medical">Medical services</a>
-                <a href="#footer">Contact</a>
-              </nav>
-            </details>
-          </div>
-        </header>
+        <KKNavbar isHome />
 
         <div className="hero-copy">
           <p className="hero-kicker">Care, comfort & Kerala</p>
@@ -306,15 +275,9 @@ export default function Home() {
       </section>
 
       <section className="process-section" id="how-it-works">
-        <div className="process-heading">
-          <div>
-            <p className="eyebrow">Your journey, coordinated</p>
-            <h2>How KK Travels Works</h2>
-          </div>
-          <p>
-            From your first enquiry to your journey home, we help coordinate
-            every step with care.
-          </p>
+        <div className="process-heading section-heading">
+          <p className="eyebrow">Your journey, coordinated</p>
+          <h2>How KK Travels Works</h2>
         </div>
 
         <div className="process-grid">
@@ -416,47 +379,18 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer" id="footer">
-        <div className="footer-main">
-          <div className="footer-about">
-            <a className="footer-brand" href="#home">
-              <Image
-                className="brand-logo"
-                src="/logo/KK Travels — Logo.svg"
-                alt=""
-                width={24}
-                height={19}
-                aria-hidden="true"
-              />
-              <span>KK Travels</span>
-            </a>
-            <p>
-              Your trusted partner for medical travel and tourism coordination
-              between the GCC and India.
-            </p>
-          </div>
-          <div className="footer-column">
-            <h2>Company</h2>
-            <a href="#about">About us</a>
-            <a href="#how-it-works">Our process</a>
-            <a href="mailto:vita-travels@gmail.com">Email: to be provided</a>
-            <a href="tel:+1012345678">Phone: to be provided</a>
-          </div>
-          <div className="footer-column">
-            <h2>Services</h2>
-            <a href="#medical">Medical travel</a>
-            <a href="#tours">Kerala tourism</a>
-            <a href="#tours">Custom journeys</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© KK Travels. All rights reserved.</p>
-          <div>
-            <a href="#footer">Privacy policy</a>
-            <a href="#footer">Terms of service</a>
-          </div>
-        </div>
-      </footer>
+      <section className="home-contact-cta" aria-labelledby="home-contact-title">
+        <p className="eyebrow">Personal guidance for your next step</p>
+        <h2 id="home-contact-title">Let’s plan your journey together.</h2>
+        <p>
+          Share your plans with us and get help coordinating the details.
+        </p>
+        <Link className="home-contact-cta-link" href="/contact">
+          Plan your journey <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
+      <SiteFooter isHome />
     </main>
   );
 }

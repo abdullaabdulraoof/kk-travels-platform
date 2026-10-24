@@ -1,142 +1,207 @@
-
-/* ========================================
-   KK NAVBAR — DESKTOP LAYOUT FIX
-======================================== */
-
-.kk-navbar {
-  padding: 22px 4.2%;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 24, 19, 0.68) 0%,
-    rgba(8, 24, 19, 0.22) 75%,
-    transparent 100%
-  );
-}
-
-.kk-navbar-container {
+.site-header {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
-  width: 100%;
-  max-width: 1800px;
-  margin-inline: auto;
+  min-height: 80px;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 18px;
+  padding: 0 24px 0 46px;
+  border-bottom: 1px solid rgba(230, 237, 229, 0.2);
+  color: #fff;
 }
 
-.kk-brand {
+.site-brand {
+  display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
 }
 
-.kk-navbar .navbar-toggler {
+.brand-logo {
+  display: block;
+  width: 40px;
+  height: 31px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.desktop-nav {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  gap: 0;
+  margin-left: auto;
+}
+
+.desktop-nav a {
+  display: inline-flex;
+  min-height: 80px;
+  align-items: center;
+  padding: 0 16px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  transition: opacity 180ms ease;
+}
+
+.desktop-nav a:hover,
+.site-brand:hover {
+  opacity: 0.76;
+}
+
+.header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-self: stretch;
+  align-items: center;
+  gap: 16px;
+  margin-left: 8px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(230, 237, 229, 0.2);
+}
+
+.nav-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.nav-contact-link:hover {
+  opacity: 0.76;
+}
+
+.menu-details {
+  position: relative;
+}
+
+.menu-details summary {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu-details summary::-webkit-details-marker {
   display: none;
 }
 
-.kk-navbar .navbar-collapse {
-  display: flex !important;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 0;
+.menu-details summary span {
+  width: 12px;
+  height: 1px;
+  background: #fff;
 }
 
-.kk-nav-links {
-  display: flex;
-  flex: 1 1 auto;
-  justify-content: center;
-  gap: clamp(18px, 2vw, 34px);
-  margin-inline: 32px !important;
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  display: grid;
+  min-width: 205px;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(22, 24, 29, 0.97);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.25);
 }
 
-.kk-nav-links .kk-nav-link {
-  font-size: 10px;
-  letter-spacing: 0.9px;
+.menu-panel a {
+  padding: 10px 11px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
 }
 
-.kk-nav-actions {
-  flex: 0 0 auto;
-  gap: 22px;
+.menu-panel a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
 }
 
-.kk-contact-button {
-  min-width: 190px;
+.site-header a:focus-visible,
+.site-header summary:focus-visible {
+  outline: 2px solid #f0d8a2;
+  outline-offset: 4px;
 }
 
-/* Make the navbar easier to read over the sky */
-.kk-navbar-scrolled {
-  background: rgba(9, 28, 22, 0.96);
-}
-
-/* ========================================
-   TABLET AND MOBILE
-======================================== */
-
-@media (max-width: 991px) {
-  .kk-navbar,
-  .kk-navbar.kk-navbar-scrolled {
-    padding: 14px 5%;
-    background: rgba(9, 28, 22, 0.96);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-
-  .kk-navbar .navbar-toggler {
-    display: block;
-    margin-inline-start: auto;
-  }
-
-  .kk-navbar .navbar-collapse {
-    display: none !important;
-    flex-basis: 100%;
-  }
-
-  .kk-navbar .navbar-collapse.show {
-    display: block !important;
-  }
-
-  .kk-nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    margin: 0 !important;
-  }
-
-  .kk-nav-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 18px;
-  }
-
-  .kk-contact-button {
-    min-width: 0;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1250px) {
-  .kk-navbar {
-    padding-inline: 2.5%;
-  }
-
-  .kk-navbar-container {
-    gap: 18px;
-  }
-
-  .kk-nav-links {
-    gap: 14px;
-    margin-inline: 12px !important;
-  }
-
-  .kk-nav-links .kk-nav-link {
-    font-size: 9px;
-  }
-
-  .kk-nav-actions {
-    gap: 13px;
-  }
-
-  .kk-contact-button {
-    min-width: 155px;
+@media (max-width: 760px) {
+  .site-header {
+    min-height: 64px;
     gap: 10px;
-    padding-inline: 10px;
+    padding: 0 20px;
+  }
+
+  .site-brand {
+    gap: 8px;
+    font-size: 17px;
+  }
+
+  .site-brand .brand-logo {
+    width: 34px;
+    height: 26px;
+  }
+
+  .desktop-nav a {
+    min-height: 64px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+
+  .header-actions {
+    gap: 10px;
+    margin-left: 2px;
+    padding-left: 12px;
+  }
+
+  .nav-contact-link {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    min-height: 62px;
+    padding-inline: 18px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .nav-contact-link {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header *,
+  .site-header *::before,
+  .site-header *::after {
+    transition-duration: 0.01ms !important;
   }
 }
