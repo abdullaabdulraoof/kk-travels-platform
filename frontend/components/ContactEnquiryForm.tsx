@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { contactDetails } from "@/lib/contact-config";
 
 type EnquiryType = "medical" | "tourism";
@@ -133,14 +133,14 @@ export default function ContactEnquiryForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmissionStatus>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [focusFirstError, setFocusFirstError] = useState(false);
+  const focusFirstError = useRef(false);
 
   useEffect(() => {
-    if (focusFirstError && Object.keys(errors).length > 0) {
+    if (focusFirstError.current && Object.keys(errors).length > 0) {
       document.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
-      setFocusFirstError(false);
+      focusFirstError.current = false;
     }
-  }, [errors, focusFirstError]);
+  }, [errors]);
 
   function updateCommon(field: keyof CommonFields, value: string) {
     setCommon((current) => ({ ...current, [field]: value }));
@@ -182,11 +182,11 @@ export default function ContactEnquiryForm() {
     setStatus(null);
 
     if (Object.keys(nextErrors).length > 0) {
-      setFocusFirstError(true);
+      focusFirstError.current = true;
       return;
     }
 
-    setFocusFirstError(false);
+    focusFirstError.current = false;
     if (!contactDetails.enquiryEndpoint) {
       setStatus({
         kind: "error",
