@@ -9,6 +9,7 @@ import {
 import { AuthService } from './auth.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { JwtAuthGuard } from './jwt-auth.guard.js';
+import { OwnerGuard } from './owner.guard.js';
 import { SafeAdminProfile } from './types.js';
 
 @Controller('auth')
@@ -20,7 +21,7 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, OwnerGuard)
   @Get('me')
   getCurrentAdmin(@Req() request: { user: SafeAdminProfile }) {
     return request.user;

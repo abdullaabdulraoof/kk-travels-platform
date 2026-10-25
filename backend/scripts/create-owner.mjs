@@ -2,12 +2,16 @@ import * as argon2 from 'argon2';
 import { isEmail } from 'class-validator';
 import { QueryFailedError } from 'typeorm';
 import { AppDataSource } from '../dist/database/data-source.js';
-import { AdminUser } from '../dist/database/entities/admin-user.entity.js';
+import {
+  AdminRole,
+  AdminUser,
+} from '../dist/database/entities/admin-user.entity.js';
 
 const ownerEmailInput = process.env.ADMIN_OWNER_EMAIL;
 const ownerPassword = process.env.ADMIN_OWNER_PASSWORD;
 delete process.env.ADMIN_OWNER_EMAIL;
 delete process.env.ADMIN_OWNER_PASSWORD;
+const configuredOwnerEmail = 'abdulraoof@mail.com';
 
 class OwnerAlreadyExistsError extends Error {}
 
@@ -35,6 +39,12 @@ async function createOwner() {
     return;
   }
 
+  if (email !== configuredOwnerEmail) {
+    console.error('ADMIN_OWNER_EMAIL does not match the configured owner account.');
+    process.exitCode = 1;
+    return;
+  }
+
   if (ownerPassword.length < 12) {
     console.error('ADMIN_OWNER_PASSWORD must be at least 12 characters long.');
     process.exitCode = 1;
@@ -58,6 +68,7 @@ async function createOwner() {
         email,
         passwordHash,
         isActive: true,
+        role: AdminRole.OWNER,
       });
       await adminUsers.save(owner);
     });

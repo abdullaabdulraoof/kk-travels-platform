@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { AuthModule } from './auth/auth.module.js';
+import { EnquiriesModule } from './enquiries/enquiries.module.js';
 import {
   AdminUser,
   Enquiry,
@@ -20,6 +21,7 @@ import {
       envFilePath: '.env',
     }),
     AuthModule,
+    EnquiriesModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

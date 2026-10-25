@@ -60,14 +60,19 @@ $ npm run test:cov
 ## Initialize the first admin owner
 
 Set `ADMIN_OWNER_EMAIL` and `ADMIN_OWNER_PASSWORD` in the environment used to run
-the command. The password must be at least 12 characters. Then run:
+the command. The email must be `abdulraoof@mail.com`, and the password must be at
+least 12 characters. Apply pending migrations before running the command:
 
 ```bash
+npm run migration:run
 npm run admin:create-owner
 ```
 
 This one-time CLI refuses to run once any admin account exists. It clears the
-credential variables from its process before attempting account creation.
+credential variables from its process before attempting account creation. The
+role migration defaults all administrators to `ADMIN` and promotes only the
+configured owner email; the CLI assigns `OWNER` only when creating that initial
+account.
 
 The API requires `JWT_SECRET` to contain at least 32 characters and
 `JWT_EXPIRES_IN` to be configured before it starts.

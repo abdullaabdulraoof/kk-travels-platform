@@ -7,6 +7,7 @@ import { AdminUser } from '../database/entities/admin-user.entity.js';
 import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
 import { JwtAuthGuard } from './jwt-auth.guard.js';
+import { OwnerGuard } from './owner.guard.js';
 import { JwtStrategy } from './jwt.strategy.js';
 import { getJwtSecret } from './jwt-secret.js';
 
@@ -30,6 +31,7 @@ import { getJwtSecret } from './jwt-secret.js';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, JwtAuthGuard],
+  providers: [AuthService, JwtStrategy, JwtAuthGuard, OwnerGuard],
+  exports: [JwtAuthGuard, OwnerGuard],
 })
 export class AuthModule {}

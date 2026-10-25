@@ -2,10 +2,12 @@
 import * as argon2 from 'argon2';
 import { isEmail } from 'class-validator';
 import { QueryFailedError } from 'typeorm';
-import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
-import { AppDataSource } from '../dist/database/data-source.js';
-import { AdminUser } from '../dist/database/entities/admin-user.entity.js';
+import { AppDataSource } from '../../dist/database/data-source.js';
+import {
+  AdminRole,
+  AdminUser,
+} from '../../dist/database/entities/admin-user.entity.js';
 
 const ADMIN_OWNER_EMAIL = 'abdulraoof@mail.com';
 
@@ -81,8 +83,8 @@ async function createOwner() {
   try {
     password = await readHiddenPassword();
 
-    if (password.length < 6) {
-      console.error('Password must be at least 6 characters long.');
+    if (password.length < 12) {
+      console.error('Password must be at least 12 characters long.');
       process.exitCode = 1;
       return;
     }
@@ -106,6 +108,7 @@ async function createOwner() {
         email: ADMIN_OWNER_EMAIL.toLowerCase(),
         passwordHash,
         isActive: true,
+        role: AdminRole.OWNER,
       });
 
       await adminUsers.save(owner);

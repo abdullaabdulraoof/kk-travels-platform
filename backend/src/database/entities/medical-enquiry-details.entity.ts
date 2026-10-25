@@ -24,14 +24,6 @@ export class MedicalEnquiryDetails {
   })
   enquiry: Enquiry;
 
-    @Column({
-    name: 'enquiry_id',
-    type: 'uuid',
-    insert: false,
-    update: false,
-  })
-  enquiryId: string;
-
   @Column({
     name: 'treatment_specialty',
     type: 'varchar',

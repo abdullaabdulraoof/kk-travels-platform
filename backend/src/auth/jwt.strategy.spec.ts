@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { Repository } from 'typeorm';
-import { AdminUser } from '../database/entities/admin-user.entity.js';
+import { AdminRole, AdminUser } from '../database/entities/admin-user.entity.js';
 import { JwtStrategy } from './jwt.strategy.js';
 
 describe('JwtStrategy', () => {
@@ -23,12 +23,14 @@ describe('JwtStrategy', () => {
       id: adminId,
       email: 'current@example.com',
       isActive: true,
+      role: AdminRole.OWNER,
     });
 
     const profile = await strategy.validate({
       sub: adminId,
       email: 'untrusted@example.com',
       isActive: false,
+      role: AdminRole.ADMIN,
     });
 
     expect(adminUsers.findOneBy).toHaveBeenCalledWith({ id: adminId });
@@ -36,6 +38,7 @@ describe('JwtStrategy', () => {
       id: adminId,
       email: 'current@example.com',
       isActive: true,
+      role: AdminRole.OWNER,
     });
   });
 
@@ -54,6 +57,7 @@ describe('JwtStrategy', () => {
       id: adminId,
       email: 'owner@example.com',
       isActive: false,
+      role: AdminRole.OWNER,
     });
     await expect(strategy.validate({ sub: adminId })).rejects.toMatchObject({
       status: 401,

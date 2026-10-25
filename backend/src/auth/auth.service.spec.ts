@@ -1,7 +1,7 @@
 import { JwtService } from '@nestjs/jwt';
 import * as argon2 from 'argon2';
 import { Repository } from 'typeorm';
-import { AdminUser } from '../database/entities/admin-user.entity.js';
+import { AdminRole, AdminUser } from '../database/entities/admin-user.entity.js';
 import { AuthService } from './auth.service.js';
 
 describe('AuthService', () => {
@@ -28,27 +28,29 @@ describe('AuthService', () => {
   it('normalizes the email and returns only a safe profile with the token', async () => {
     adminUsers.findOneBy.mockResolvedValue({
       id: adminId,
-      email: 'owner@example.com',
+      email: 'abdulraoof@mail.com',
       passwordHash,
       isActive: true,
+      role: AdminRole.OWNER,
     });
 
     await expect(
       authService.login({
-        email: '  OWNER@Example.com ',
+        email: '  ABDULRAOOF@MAIL.COM ',
         password,
       }),
     ).resolves.toEqual({
       accessToken: 'signed-token',
       admin: {
         id: adminId,
-        email: 'owner@example.com',
+        email: 'abdulraoof@mail.com',
         isActive: true,
+        role: AdminRole.OWNER,
       },
     });
 
     expect(adminUsers.findOneBy).toHaveBeenCalledWith({
-      email: 'owner@example.com',
+      email: 'abdulraoof@mail.com',
     });
     expect(jwtService.signAsync).toHaveBeenCalledWith({ sub: adminId });
   });
@@ -67,6 +69,7 @@ describe('AuthService', () => {
       email: 'owner@example.com',
       passwordHash,
       isActive: false,
+      role: AdminRole.OWNER,
     });
     await expect(
       authService.login({ email: 'owner@example.com', password }),
@@ -80,6 +83,7 @@ describe('AuthService', () => {
       email: 'owner@example.com',
       passwordHash,
       isActive: true,
+      role: AdminRole.ADMIN,
     });
     await expect(
       authService.login({

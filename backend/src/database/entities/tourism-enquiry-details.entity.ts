@@ -24,14 +24,6 @@ export class TourismEnquiryDetails {
   })
   enquiry: Enquiry;
 
-    @Column({
-    name: 'enquiry_id',
-    type: 'uuid',
-    insert: false,
-    update: false,
-  })
-  enquiryId: string;
-
   @Column({
     name: 'preferred_destination',
     type: 'varchar',

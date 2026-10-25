@@ -7,6 +7,11 @@ import {
     Index
 } from "typeorm";
 
+export enum AdminRole {
+    OWNER = 'OWNER',
+    ADMIN = 'ADMIN',
+}
+
 @Entity('admin_users')
 export class AdminUser {
     @PrimaryGeneratedColumn('uuid')
@@ -22,6 +27,9 @@ export class AdminUser {
     @Column({ name: 'is_active', type: 'boolean', default: true })
     isActive: boolean;
 
+    @Column({ type: 'varchar', length: 20, default: AdminRole.ADMIN })
+    role: AdminRole;
+
     @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
     createdAt: Date;
 
@@ -29,4 +37,3 @@ export class AdminUser {
     updatedAt: Date;
 
 }
-
