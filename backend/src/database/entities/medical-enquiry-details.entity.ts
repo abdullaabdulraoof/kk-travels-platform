@@ -24,10 +24,11 @@ export class MedicalEnquiryDetails {
   })
   enquiry: Enquiry;
 
-  @Column({
+    @Column({
     name: 'enquiry_id',
     type: 'uuid',
-    unique: true,
+    insert: false,
+    update: false,
   })
   enquiryId: string;
 

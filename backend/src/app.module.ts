@@ -3,6 +3,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { AuthModule } from './auth/auth.module.js';
+import {
+  AdminUser,
+  Enquiry,
+  MedicalEnquiryDetails,
+  TourismEnquiryDetails,
+  EnquiryNote,
+  ActivityLog,
+} from './database/entities/index.js';
 
 @Module({
   imports: [
@@ -10,6 +19,7 @@ import { AppService } from './app.service.js';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    AuthModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -26,6 +36,14 @@ import { AppService } from './app.service.js';
         retryDelay: 3000,
       }),
     }),
+    TypeOrmModule.forFeature([
+      AdminUser,
+      Enquiry,
+      MedicalEnquiryDetails,
+      TourismEnquiryDetails,
+      EnquiryNote,
+      ActivityLog,
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

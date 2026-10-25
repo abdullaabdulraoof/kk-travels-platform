@@ -57,6 +57,21 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Initialize the first admin owner
+
+Set `ADMIN_OWNER_EMAIL` and `ADMIN_OWNER_PASSWORD` in the environment used to run
+the command. The password must be at least 12 characters. Then run:
+
+```bash
+npm run admin:create-owner
+```
+
+This one-time CLI refuses to run once any admin account exists. It clears the
+credential variables from its process before attempting account creation.
+
+The API requires `JWT_SECRET` to contain at least 32 characters and
+`JWT_EXPIRES_IN` to be configured before it starts.
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.

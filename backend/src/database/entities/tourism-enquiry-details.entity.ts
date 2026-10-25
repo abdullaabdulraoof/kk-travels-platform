@@ -24,10 +24,11 @@ export class TourismEnquiryDetails {
   })
   enquiry: Enquiry;
 
-  @Column({
+    @Column({
     name: 'enquiry_id',
     type: 'uuid',
-    unique: true,
+    insert: false,
+    update: false,
   })
   enquiryId: string;
 
@@ -35,7 +36,7 @@ export class TourismEnquiryDetails {
     name: 'preferred_destination',
     type: 'varchar',
     length: 200,
-    default: 'Kerala',
+    default: 'Kerala', 
   })
   preferredDestination: string;
 
